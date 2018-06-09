@@ -1,8 +1,14 @@
 <h1>New Project</h1>
 <%= form_for @project do |f| %>
-  <p> 
+  <p>
     Name: <%= f.text_field :name %>
   </p>
+  <%= f.fields_for :task do |task| %>
+    <p>
+      <%= render "task_fields", f: task %>
+    </p>
+    <%= link_to_add_association 'add task', f, :tasks %>
+  <% end %>
   <p>
     <%= f.submit 'Create Project' %>
   </p>
